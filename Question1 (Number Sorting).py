@@ -10,7 +10,7 @@ while True:
 
         # Checks whether the length inputted is smaller than 1
         if LENGTH < 1:
-            print('The length must be at least than 1.')
+            print('The length must be at least 1.')
             continue
 
         break
@@ -37,10 +37,16 @@ while True:
         continue
 
     # Checks whether the input only consists of number
+    onlyContainNumber = True
+
     for position in range(len(userInput)):
         if userInput[position] not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
             print('The input must only contain number.')
-            continue
+            onlyContainNumber = False
+            break
+
+    if not onlyContainNumber:
+        continue
 
     numbers.append(userInput)
     print('The number is accepted.')
@@ -95,7 +101,8 @@ if position == 0:
     # Reorder start (if length == 1)
     sortedNumbers = []
 
-    # The list of numbers is already sorted in ascending order by reading from the first cell to the last cell in array 1
+    # The list of numbers is already sorted in ascending order by reading from the first cell to the last cell in
+    # array 1
     for cellNumber in range(10):
         for number in array1[cellNumber]:
             sortedNumbers.append(number)
@@ -113,14 +120,6 @@ else:
     numberOfPasses = 1
 
     while position > 0:
-        # Prints out the position of the list of numbers in array 1 after the previous pass
-        print(f'\nAfter pass {numberOfPasses}: ')
-        for cellNumber in range(10):
-            print(f'Cell {cellNumber}: ')
-
-            for number in array1[cellNumber]:
-                print(number)
-
         # Increment number of passes (go to the next pass) and decrement position (move one position forward)
         numberOfPasses = numberOfPasses + 1
         position = position - 1
@@ -136,7 +135,8 @@ else:
             for cellNumber in range(10):
                 # Reads every number in each cell in array 1
                 for number in array1[cellNumber]:
-                    # Appends the number to corresponding cell in array 2 based on the second last (or 4th last, 6th last, 8th last, ...) digit of the number
+                    # Appends the number to corresponding cell in array 2 based on the second last (or 4th last,
+                    # 6th last, 8th last, ...) digit of the number
                     if number[position] == '0':
                         array2[0].append(number)
                     elif number[position] == '1':
@@ -170,7 +170,8 @@ else:
             for cellNumber in range(10):
                 # Reads every number in each cell in array 2
                 for number in array2[cellNumber]:
-                    # Appends the number to the corresponding cell in array 1 based on the third last (or 5th last, 7th last, 9th last, ...) digit of the number
+                    # Appends the number to the corresponding cell in array 1 based on the third last (or 5th last,
+                    # 7th last, 9th last, ...) digit of the number
                     if number[position] == '0':
                         array1[0].append(number)
                     elif number[position] == '1':
@@ -201,7 +202,8 @@ else:
     # After the second pass (or 4th pass, 6th pass, 8th pass, ...)
     # After all passes that write to array 2
     if numberOfPasses % 2 == 0:
-        # The list of numbers is already sorted in ascending order by reading from the first cell to the last cell in array 2
+        # The list of numbers is already sorted in ascending order by reading from the first cell to the last cell
+        # in array 2
         for cellNumber in range(10):
             for number in array2[cellNumber]:
                 sortedNumbers.append(number)
@@ -209,10 +211,16 @@ else:
     # After the third pass (or 5th pass, 7th pass, 9th pass, ...)
     # After all passes that write to array 1 (except the first pass)
     else:
-        # The list of numbers is already sorted in ascending order by reading from the first cell to the last cell in array 1
+        # The list of numbers is already sorted in ascending order by reading from the first cell to the last cell
+        # in array 1
         for cellNumber in range(10):
             for number in array1[cellNumber]:
                 sortedNumbers.append(number)
     # Reorder end
+
+    # Prints out the sorted list and then end
+    print('The sorted list of numbers: ')
+    for number in sortedNumbers:
+        print(number)
 
 # Number sorting algorithm end
